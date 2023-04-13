@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class JsonProcessorTest {
 
-  private JsonProcessor jsonProcessor = new JsonProcessor();
+  private final JsonProcessor jsonProcessor = new JsonProcessor();
 
   @Test
   void shouldReturnEmptyListWhenInputJsonIsNull() {

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class JsonProcessor {
 
-  private DslJson<Object> dslJson = new DslJson<>();
+  private final DslJson<Object> dslJson = new DslJson<>();
 
   public List<AuthorMessage> extractAuthorMessages(String json) {
     if (StringUtils.isBlank(json)) {
