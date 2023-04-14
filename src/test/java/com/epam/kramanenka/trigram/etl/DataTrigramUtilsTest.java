@@ -1,6 +1,6 @@
-package com.epam.kramanenka.trigram.utils;
+package com.epam.kramanenka.trigram.etl;
 
-import com.epam.kramanenka.trigram.util.TrigramUtils;
+import com.epam.kramanenka.trigram.util.DataTrigramUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,35 +8,35 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class TrigramUtilsTest {
+class DataTrigramUtilsTest {
 
   @Test
   void shouldReturnEmptyResultWhenInputIsNullOnFind() {
-    assertThat(TrigramUtils.findAllTrigrams(null))
+    assertThat(DataTrigramUtils.findAllTrigrams(null))
         .isEmpty();
   }
 
   @Test
   void shouldReturnEmptyResultWhenInputIsEmptyOnFind() {
-    assertThat(TrigramUtils.findAllTrigrams(""))
+    assertThat(DataTrigramUtils.findAllTrigrams(""))
         .isEmpty();
   }
 
   @Test
   void shouldReturnEmptyResultWhenInputContainsLessThan3WordsOnFind() {
-    assertThat(TrigramUtils.findAllTrigrams("one two"))
+    assertThat(DataTrigramUtils.findAllTrigrams("one two"))
         .isEmpty();
   }
 
   @Test
   void shouldReturnOneTrigramWhenInputContainsExactly3WordsOnFind() {
-    assertThat(TrigramUtils.findAllTrigrams("one two three"))
+    assertThat(DataTrigramUtils.findAllTrigrams("one two three"))
         .containsExactlyEntriesOf(Map.of("one two three", 1L));
   }
 
   @Test
   void shouldReturnCorrectTrigramsOnFind() {
-    assertThat(TrigramUtils.findAllTrigrams("  one two  three   four one  two  three four  "))
+    assertThat(DataTrigramUtils.findAllTrigrams("  one two  three   four one  two  three four  "))
         .containsExactlyInAnyOrderEntriesOf(Map.of(
             "one two three", 2L,
             "two three four", 2L,
@@ -54,7 +54,7 @@ class TrigramUtilsTest {
         "  three four one",
         "  one two  three   four");
 
-    assertThat(TrigramUtils.findTopFrequentTrigrams(input, 3))
+    assertThat(DataTrigramUtils.findTopFrequentTrigrams(input, 3))
         .containsExactly("one two three", "two three four", "three four one");
   }
 }

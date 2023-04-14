@@ -5,23 +5,25 @@ in the commit messages for each author name in event type “PushEvent” within
 
 #### Output example:
 
-> `'author' 'first 3-gram' 'second 3-gram' 'third 3-gram' 'fourth 3-gram' 'fifth 3-gram'`
+`'author' 'first 3-gram' 'second 3-gram' 'third 3-gram' 'fourth 3-gram' 'fifth 3-gram'`
 
-> `'erfankashani' 'merge pull request' 'pull request #4' 'request #4 from' 'rack from 207' 'from 207 to'`
+`'erfankashani' 'merge pull request' 'pull request #4' 'request #4 from' 'rack from 207' 'from 207 to'`
 
 ## How to run
 
 #### Environment
-Maven and Java 17 should be installed.
+* Maven 
+* JDK 17
 
 #### Build
->`mvn clean package`
+`mvn clean package`
 
 #### Run
->`mvn exec:java`
+`mvn exec:java`
 
 To run this program with other input file use the command like:
->`mvn exec:java -Dexec.args="file:///c:/work/other-file.jsonl.bz2"`
+
+`mvn exec:java -Dexec.args="file:///c:/work/other-file.jsonl.bz2"`
 
 #### Results
 You can find execution result in the `./output` folder. 

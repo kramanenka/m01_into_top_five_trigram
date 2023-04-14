@@ -1,7 +1,7 @@
 package com.epam.kramanenka.trigram;
 
-import com.epam.kramanenka.trigram.io.InputDataProcessor;
-import com.epam.kramanenka.trigram.io.OutputDataProcessor;
+import com.epam.kramanenka.trigram.etl.DataExtractor;
+import com.epam.kramanenka.trigram.etl.DataTransformerLoader;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DurationFormatUtils;
@@ -22,13 +22,13 @@ public class Main {
     log.info("Program execution started");
     var startTime = Instant.now();
 
-    var inputDataProcessor = InputDataProcessor.builder().build();
-    var outputDataProcessor = OutputDataProcessor.builder().build();
+    var dataExtractor = DataExtractor.builder().build();
+    var dataTransformerLoader = DataTransformerLoader.builder().build();
     if (args.length > 0) {
-      inputDataProcessor.setInputFilename(args[0]);
+      dataExtractor.setInputFilename(args[0]);
     }
-    var data = inputDataProcessor.processInputFile();
-    outputDataProcessor.analyzeDataAndWriteOutputCsv(data);
+    var data = dataExtractor.extractDataFromInputFile();
+    dataTransformerLoader.transformDataAndLoadToCsv(data);
 
     var duration = DurationFormatUtils.formatDuration(Duration.between(startTime, Instant.now()).toMillis(), "HH:mm:ss", true);
     log.info("Finished in {}", duration);

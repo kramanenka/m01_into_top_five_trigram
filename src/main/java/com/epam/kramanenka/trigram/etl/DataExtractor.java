@@ -1,4 +1,4 @@
-package com.epam.kramanenka.trigram.io;
+package com.epam.kramanenka.trigram.etl;
 
 import com.epam.kramanenka.trigram.json.JsonProcessor;
 import com.epam.kramanenka.trigram.model.AuthorMessage;
@@ -21,7 +21,7 @@ import static java.util.stream.Collectors.toList;
 
 @Slf4j
 @Builder
-public class InputDataProcessor {
+public class DataExtractor {
   private static final String TYPE_PUSH_EVENT = "\"type\":\"PushEvent\"";
   private static final String DEFAULT_INPUT_FILENAME = "10K.github.jsonl.bz2";
 
@@ -31,7 +31,7 @@ public class InputDataProcessor {
   @Builder.Default
   private String messageFilter = TYPE_PUSH_EVENT;
 
-  public Map<String, List<String>> processInputFile() throws IOException {
+  public Map<String, List<String>> extractDataFromInputFile() throws IOException {
     Path inputFilePath = FileUtils.getExistingFilePath(inputFilename);
 
     try (InputStream inputStream = new BZip2CompressorInputStream(new BufferedInputStream(Files.newInputStream(inputFilePath)))) {
